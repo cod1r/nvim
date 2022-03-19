@@ -7,7 +7,6 @@ set smartcase
 call plug#begin('~/.vim/plugged')
 	Plug 'leafgarland/typescript-vim'
 	Plug 'peitalin/vim-jsx-typescript'
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'arcticicestudio/nord-vim'
+	Plug 'tomasiser/vim-code-dark'
 call plug#end()
-colorscheme nord
+color codedark
