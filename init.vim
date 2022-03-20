@@ -4,7 +4,11 @@ set ts=2 sw=2
 set smartindent
 set autoindent
 set smartcase
-call plug#begin('~/.vim/plugged')
+set mouse=a
+" for terminals that emit SGR-styled mouse events. This option only exists in
+" vim
+"set ttymouse=sgr
+call plug#begin('~/.config/nvim/plugged')
 	Plug 'leafgarland/typescript-vim'
 	Plug 'peitalin/vim-jsx-typescript'
 	Plug 'tomasiser/vim-code-dark'
