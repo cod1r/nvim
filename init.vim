@@ -5,6 +5,7 @@ set smartindent
 set autoindent
 set smartcase
 set mouse=a
+set clipboard=unnamed
 " for terminals that emit SGR-styled mouse events. This option only exists in
 " vim
 "set ttymouse=sgr
