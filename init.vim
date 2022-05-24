@@ -6,12 +6,12 @@ set autoindent
 set smartcase
 set mouse=a
 set clipboard=unnamedplus
+set termguicolors
 " for terminals that emit SGR-styled mouse events. This option only exists in
 " vim
 "set ttymouse=sgr
 call plug#begin('~/.config/nvim/plugged')
 	Plug 'leafgarland/typescript-vim'
-	Plug 'peitalin/vim-jsx-typescript'
-	Plug 'tomasiser/vim-code-dark'
+	Plug 'dracula/vim'
 call plug#end()
-color codedark
+color dracula
