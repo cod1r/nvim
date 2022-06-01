@@ -12,6 +12,7 @@ set termguicolors
 "set ttymouse=sgr
 call plug#begin('~/.config/nvim/plugged')
 	Plug 'leafgarland/typescript-vim'
-	Plug 'dracula/vim'
+	Plug 'doums/darcula'
+	Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
-color dracula
+color darcula
