@@ -17,4 +17,11 @@ vim.cmd([[
 	call plug#end()
 	color darcula
 ]])
--- require('lspconfig').tsserver.setup{}
+require('lspconfig').tsserver.setup{}
+require('lspconfig').gopls.setup{}
+require('lspconfig').ocamllsp.setup{}
+vim.diagnostic.config({
+	virtual_text = false
+})
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.o.updatetime = 250
