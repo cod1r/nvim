@@ -11,11 +11,11 @@ vim.opt.termguicolors = true
 vim.cmd([[
 	call plug#begin('~/.config/nvim/plugged')
 		Plug 'leafgarland/typescript-vim'
-		Plug 'doums/darcula'
 		Plug 'MaxMEllon/vim-jsx-pretty'
 		Plug 'neovim/nvim-lspconfig'
+		Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 	call plug#end()
-	color darcula
+	color catppuccin
 ]])
 require('lspconfig').tsserver.setup{}
 require('lspconfig').gopls.setup{}
