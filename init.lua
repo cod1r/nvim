@@ -14,14 +14,29 @@ vim.cmd([[
 		Plug 'MaxMEllon/vim-jsx-pretty'
 		Plug 'neovim/nvim-lspconfig'
 		Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+		Plug 'hrsh7th/cmp-nvim-lsp'
+		Plug 'hrsh7th/nvim-cmp'
 	call plug#end()
 	color catppuccin
 ]])
-require('lspconfig').tsserver.setup{}
-require('lspconfig').gopls.setup{}
-require('lspconfig').ocamllsp.setup{}
+require('cmp').setup {
+  sources = {
+    { name = 'nvim_lsp' }
+  }
+}
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+require('lspconfig').tsserver.setup{capabilities = capabilities}
+require('lspconfig').gopls.setup{capabilities = capabilities}
+require('lspconfig').ocamllsp.setup{capabilities = capabilities}
+require('lspconfig').ccls.setup{capabilities = capabilities}
 vim.diagnostic.config({
 	virtual_text = false
 })
 vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.o.updatetime = 250
+
+
