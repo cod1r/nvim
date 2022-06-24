@@ -16,12 +16,23 @@ vim.cmd([[
 		Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 		Plug 'hrsh7th/cmp-nvim-lsp'
 		Plug 'hrsh7th/nvim-cmp'
+		Plug 'saadparwaiz1/cmp_luasnip'
+		Plug 'L3MON4D3/LuaSnip'
 	call plug#end()
 	color catppuccin
 ]])
 require('cmp').setup {
+	snippet = {
+		expand = function(args)
+			require('luasnip').lsp_expand(args.body)
+		end
+	},
+	mapping = require('cmp').mapping.preset.insert({
+		['<CR>'] = require('cmp').mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	}),
   sources = {
-    { name = 'nvim_lsp' }
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' }
   }
 }
 
