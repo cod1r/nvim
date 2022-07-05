@@ -13,13 +13,13 @@ vim.cmd([[
 		Plug 'leafgarland/typescript-vim'
 		Plug 'MaxMEllon/vim-jsx-pretty'
 		Plug 'neovim/nvim-lspconfig'
-		Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+		Plug 'morhetz/gruvbox'
 		Plug 'hrsh7th/cmp-nvim-lsp'
 		Plug 'hrsh7th/nvim-cmp'
 		Plug 'saadparwaiz1/cmp_luasnip'
 		Plug 'L3MON4D3/LuaSnip'
 	call plug#end()
-	color catppuccin
+	color gruvbox
 ]])
 require('cmp').setup {
 	snippet = {
@@ -43,11 +43,16 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 require('lspconfig').tsserver.setup{capabilities = capabilities}
 require('lspconfig').gopls.setup{capabilities = capabilities}
 require('lspconfig').ocamllsp.setup{capabilities = capabilities}
-require('lspconfig').ccls.setup{capabilities = capabilities}
+require('lspconfig').ccls.setup{
+	capabilities = capabilities,
+	init_options = {
+		clang = {
+			extraArgs = {"-std=c++20"}
+		}
+	}
+}
 vim.diagnostic.config({
 	virtual_text = false
 })
 vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.o.updatetime = 250
-
-
