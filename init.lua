@@ -21,6 +21,7 @@ vim.cmd([[
 	call plug#end()
 	color gruvbox
 ]])
+local root_pattern = require('lspconfig').util.root_pattern
 require('cmp').setup {
 	snippet = {
 		expand = function(args)
@@ -40,7 +41,13 @@ require('cmp').setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-require('lspconfig').tsserver.setup{capabilities = capabilities}
+require('lspconfig').denols.setup{
+	root_dir = root_pattern("deno.json", "deno.jsonc")
+}
+require('lspconfig').tsserver.setup{
+	capabilities = capabilities,
+	root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json")
+}
 require('lspconfig').gopls.setup{capabilities = capabilities}
 require('lspconfig').ocamllsp.setup{capabilities = capabilities}
 require('lspconfig').ccls.setup{
@@ -51,6 +58,7 @@ require('lspconfig').ccls.setup{
 		}
 	}
 }
+require('lspconfig').hls.setup{capabilities = capabilities}
 vim.diagnostic.config({
 	virtual_text = false
 })
