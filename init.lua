@@ -8,18 +8,21 @@ vim.opt.smartcase = true
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.termguicolors = true
+vim.opt.autoread = true
 vim.cmd([[
 	call plug#begin('~/.config/nvim/plugged')
 		Plug 'leafgarland/typescript-vim'
 		Plug 'MaxMEllon/vim-jsx-pretty'
 		Plug 'neovim/nvim-lspconfig'
-		Plug 'morhetz/gruvbox'
 		Plug 'hrsh7th/cmp-nvim-lsp'
 		Plug 'hrsh7th/nvim-cmp'
 		Plug 'saadparwaiz1/cmp_luasnip'
 		Plug 'L3MON4D3/LuaSnip'
+		Plug 'ziglang/zig.vim'
+		Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 	call plug#end()
-	color gruvbox
+	color catppuccin
+	let g:zig_fmt_autosave = 0
 ]])
 local root_pattern = require('lspconfig').util.root_pattern
 require('cmp').setup {
@@ -58,9 +61,17 @@ require('lspconfig').ccls.setup{
 		}
 	}
 }
-require('lspconfig').hls.setup{capabilities = capabilities}
+require('lspconfig').hls.setup {capabilities = capabilities}
+require'lspconfig'.rust_analyzer.setup{
+	capabilities = capabilities,
+	root_dir = root_pattern("Cargo.toml", "rust-project.json")
+}
+require'lspconfig'.zls.setup {
+	capabilities = capabilities,
+	single_file_support = true
+}
 vim.diagnostic.config({
 	virtual_text = false
 })
 vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-vim.o.updatetime = 250
+vim.o.updatetime = 200
