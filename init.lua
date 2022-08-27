@@ -8,7 +8,6 @@ vim.opt.smartcase = true
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.termguicolors = true
-vim.opt.autoread = true
 vim.cmd([[
 	call plug#begin('~/.config/nvim/plugged')
 		Plug 'leafgarland/typescript-vim'
@@ -20,9 +19,11 @@ vim.cmd([[
 		Plug 'L3MON4D3/LuaSnip'
 		Plug 'ziglang/zig.vim'
 		Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-	call plug#end()
-	color catppuccin
-	let g:zig_fmt_autosave = 0
+		Plug 'haze/sitruuna.vim'
+		call plug#end()
+		"color catppuccin
+		color sitruuna
+		let g:zig_fmt_autosave = 0
 ]])
 local root_pattern = require('lspconfig').util.root_pattern
 require('cmp').setup {
