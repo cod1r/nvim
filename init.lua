@@ -19,7 +19,7 @@ vim.cmd([[
 		Plug 'L3MON4D3/LuaSnip'
 		Plug 'ziglang/zig.vim'
 		Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-		Plug 'haze/sitruuna.vim'
+		Plug 'eemed/sitruuna.vim'
 		call plug#end()
 		"color catppuccin
 		color sitruuna
