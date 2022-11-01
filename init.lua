@@ -8,6 +8,7 @@ vim.opt.smartcase = true
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.termguicolors = true
+vim.opt.cinoptions = 'l1'
 vim.cmd([[
 	call plug#begin('~/.config/nvim/plugged')
 		Plug 'leafgarland/typescript-vim'
@@ -22,9 +23,11 @@ vim.cmd([[
 		Plug 'eemed/sitruuna.vim'
 		Plug 'nvim-lua/plenary.nvim'
 		Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+		Plug 'ellisonleao/gruvbox.nvim'
 		call plug#end()
-		"color catppuccin
-		color sitruuna
+		color catppuccin
+		"color sitruuna
+		"color gruvbox
 		let g:zig_fmt_autosave = 0
 ]])
 -- <leader> is the '\' key
@@ -79,7 +82,7 @@ require('cmp').setup {
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 require('lspconfig').denols.setup{
 	root_dir = root_pattern("deno.json", "deno.jsonc")
