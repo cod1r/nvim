@@ -8,9 +8,9 @@ vim.opt.smartcase = true
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.termguicolors = true
-vim.opt.cinoptions = 'l1'
+vim.opt.modelines = 0
 vim.cmd([[
-	call plug#begin('~/.config/nvim/plugged')
+		call plug#begin('~/.config/nvim/plugged')
 		Plug 'leafgarland/typescript-vim'
 		Plug 'MaxMEllon/vim-jsx-pretty'
 		Plug 'neovim/nvim-lspconfig'
@@ -24,14 +24,21 @@ vim.cmd([[
 		Plug 'nvim-lua/plenary.nvim'
 		Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 		Plug 'ellisonleao/gruvbox.nvim'
+		Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+		Plug 'eandrju/cellular-automaton.nvim' 
 		call plug#end()
 		color catppuccin
 		"color sitruuna
 		"color gruvbox
+		"color tokyonight
 		let g:zig_fmt_autosave = 0
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
+vim.keymap.set('n', '<S-k>', '<Nop>')
+vim.keymap.set('n', '<S-j>', '<Nop>')
+vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
+-- vim.keymap.set('n', "<leader>lsp", "<cmd>lua turn_on_lsp()<CR><cmd>e<CR>")
 
 require('telescope').setup{
   defaults = {
@@ -80,38 +87,40 @@ require('cmp').setup {
   }
 }
 
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-require('lspconfig').denols.setup{
-	root_dir = root_pattern("deno.json", "deno.jsonc")
-}
-require('lspconfig').tsserver.setup{
-	capabilities = capabilities,
-	root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json")
-}
-require('lspconfig').gopls.setup{capabilities = capabilities}
-require('lspconfig').ocamllsp.setup{capabilities = capabilities}
-require('lspconfig').ccls.setup{
-	capabilities = capabilities,
-	init_options = {
-		clang = {
-			extraArgs = {"-std=c++20"}
+function turn_on_lsp ()
+	-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+	require('lspconfig').denols.setup{
+		root_dir = root_pattern("deno.json", "deno.jsonc")
+	}
+	require('lspconfig').tsserver.setup{
+		capabilities = capabilities,
+		root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json")
+	}
+	require('lspconfig').gopls.setup{capabilities = capabilities}
+	require('lspconfig').ocamllsp.setup{capabilities = capabilities}
+	require('lspconfig').ccls.setup{
+		capabilities = capabilities,
+		init_options = {
+			clang = {
+				extraArgs = {"-std=c++20"}
+			}
 		}
 	}
-}
-require('lspconfig').hls.setup {capabilities = capabilities}
-require'lspconfig'.rust_analyzer.setup{
-	capabilities = capabilities,
-	root_dir = root_pattern("Cargo.toml", "rust-project.json")
-}
-require'lspconfig'.zls.setup {
-	capabilities = capabilities,
-	single_file_support = true
-}
-vim.diagnostic.config({
-	virtual_text = false
-})
-vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+	require('lspconfig').hls.setup {capabilities = capabilities}
+	require'lspconfig'.rust_analyzer.setup{
+		capabilities = capabilities,
+		root_dir = root_pattern("Cargo.toml", "rust-project.json")
+	}
+	require'lspconfig'.zls.setup {
+		capabilities = capabilities,
+		single_file_support = true
+	}
+end
+turn_on_lsp()
+-- vim.diagnostic.config({
+-- 	virtual_text = false
+-- })
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.o.updatetime = 200
