@@ -9,6 +9,8 @@ vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.termguicolors = true
 vim.opt.modelines = 0
+vim.opt.lcs = 'eol:$,tab: >,trail:-'
+vim.opt.list = true
 vim.cmd([[
 		call plug#begin('~/.config/nvim/plugged')
 		Plug 'leafgarland/typescript-vim'
