@@ -28,7 +28,6 @@ vim.cmd([[
 		Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 		Plug 'ellisonleao/gruvbox.nvim'
 		Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-		Plug 'eandrju/cellular-automaton.nvim' 
 		call plug#end()
 		color catppuccin
 		"color sitruuna
@@ -40,9 +39,7 @@ vim.cmd([[
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
 vim.keymap.set('n', '<S-k>', '<Nop>')
 vim.keymap.set('n', '<S-j>', '<Nop>')
-vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
--- vim.keymap.set('n', "<leader>lsp", "<cmd>lua turn_on_lsp()<CR><cmd>e<CR>")
 diagnostics_active = true
 toggle_diagnostics = function()
   diagnostics_active = not diagnostics_active
