@@ -41,7 +41,19 @@ vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
 vim.keymap.set('n', '<S-k>', '<Nop>')
 vim.keymap.set('n', '<S-j>', '<Nop>')
 vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
+vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
 -- vim.keymap.set('n', "<leader>lsp", "<cmd>lua turn_on_lsp()<CR><cmd>e<CR>")
+diagnostics_active = true
+toggle_diagnostics = function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+    vim.api.nvim_echo({ { "Show diagnostics" } }, false, {})
+    vim.diagnostic.enable()
+  else
+    vim.api.nvim_echo({ { "Disable diagnostics" } }, false, {})
+    vim.diagnostic.disable()
+  end
+end
 
 require('telescope').setup{
   defaults = {
@@ -90,38 +102,35 @@ require('cmp').setup {
   }
 }
 
-function turn_on_lsp ()
-	-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-	require('lspconfig').denols.setup{
-		root_dir = root_pattern("deno.json", "deno.jsonc")
-	}
-	require('lspconfig').tsserver.setup{
-		capabilities = capabilities,
-		root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json")
-	}
-	require('lspconfig').gopls.setup{capabilities = capabilities}
-	require('lspconfig').ocamllsp.setup{capabilities = capabilities}
-	require('lspconfig').ccls.setup{
-		capabilities = capabilities,
-		init_options = {
-			clang = {
-				extraArgs = {"-std=c++20"}
-			}
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+require('lspconfig').denols.setup{
+	root_dir = root_pattern("deno.json", "deno.jsonc")
+}
+require('lspconfig').tsserver.setup{
+	capabilities = capabilities,
+	root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json")
+}
+require('lspconfig').gopls.setup{capabilities = capabilities}
+require('lspconfig').ocamllsp.setup{capabilities = capabilities}
+require('lspconfig').ccls.setup{
+	capabilities = capabilities,
+	init_options = {
+		clang = {
+			extraArgs = {"-std=c++20"}
 		}
 	}
-	require('lspconfig').hls.setup {capabilities = capabilities}
-	require'lspconfig'.rust_analyzer.setup{
-		capabilities = capabilities,
-		root_dir = root_pattern("Cargo.toml", "rust-project.json")
-	}
-	require'lspconfig'.zls.setup {
-		capabilities = capabilities,
-		single_file_support = true
-	}
-end
-turn_on_lsp()
+}
+require('lspconfig').hls.setup {capabilities = capabilities}
+require'lspconfig'.rust_analyzer.setup{
+	capabilities = capabilities,
+	root_dir = root_pattern("Cargo.toml", "rust-project.json")
+}
+require'lspconfig'.zls.setup {
+	capabilities = capabilities,
+	single_file_support = true
+}
 -- vim.diagnostic.config({
 -- 	virtual_text = false
 -- })
