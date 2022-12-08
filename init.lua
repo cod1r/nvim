@@ -29,16 +29,16 @@ vim.cmd([[
 		Plug 'ellisonleao/gruvbox.nvim'
 		Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 		call plug#end()
-		color catppuccin
+		"color catppuccin
 		"color sitruuna
-		"color gruvbox
+		color gruvbox
 		"color tokyonight
 		let g:zig_fmt_autosave = 0
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
-vim.keymap.set('n', '<S-k>', '<Nop>')
-vim.keymap.set('n', '<S-j>', '<Nop>')
+-- taking away calling the manpages
+vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
 diagnostics_active = true
 toggle_diagnostics = function()
