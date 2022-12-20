@@ -41,7 +41,7 @@ vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
 diagnostics_active = true
-toggle_diagnostics = function()
+function toggle_diagnostics() 
   diagnostics_active = not diagnostics_active
   if diagnostics_active then
     vim.api.nvim_echo({ { "Show diagnostics" } }, false, {})
