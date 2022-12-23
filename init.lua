@@ -13,27 +13,28 @@ vim.opt.lcs = 'eol:$,tab: >,trail:-,space:-'
 vim.opt.list = true
 vim.opt.signcolumn = 'no'
 vim.cmd([[
-		call plug#begin('~/.config/nvim/plugged')
-		Plug 'leafgarland/typescript-vim'
-		Plug 'MaxMEllon/vim-jsx-pretty'
-		Plug 'neovim/nvim-lspconfig'
-		Plug 'hrsh7th/cmp-nvim-lsp'
-		Plug 'hrsh7th/nvim-cmp'
-		Plug 'saadparwaiz1/cmp_luasnip'
-		Plug 'L3MON4D3/LuaSnip'
-		Plug 'ziglang/zig.vim'
-		Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-		Plug 'eemed/sitruuna.vim'
-		Plug 'nvim-lua/plenary.nvim'
-		Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-		Plug 'ellisonleao/gruvbox.nvim'
-		Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-		call plug#end()
-		"color catppuccin
-		"color sitruuna
-		color gruvbox
-		"color tokyonight
-		let g:zig_fmt_autosave = 0
+call plug#begin('~/.config/nvim/plugged')
+Plug 'leafgarland/typescript-vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'ziglang/zig.vim'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'eemed/sitruuna.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'rust-lang/rust.vim'
+call plug#end()
+"color catppuccin
+"color sitruuna
+color gruvbox
+"color tokyonight
+let g:zig_fmt_autosave = 0
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
