@@ -27,13 +27,11 @@ Plug 'eemed/sitruuna.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'rust-lang/rust.vim'
 call plug#end()
 "color catppuccin
 "color sitruuna
 color gruvbox
-"color tokyonight
 let g:zig_fmt_autosave = 0
 ]])
 -- <leader> is the '\' key
@@ -120,7 +118,6 @@ require('lspconfig').ccls.setup{
 		}
 	}
 }
-require('lspconfig').hls.setup {capabilities = capabilities}
 require'lspconfig'.rust_analyzer.setup{
 	capabilities = capabilities,
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
