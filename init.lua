@@ -27,12 +27,21 @@ Plug 'eemed/sitruuna.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'ellisonleao/gruvbox.nvim'
+Plug 'Mofiqul/vscode.nvim'
 Plug 'rust-lang/rust.vim'
 call plug#end()
+let g:zig_fmt_autosave = 0
+]])
+require("gruvbox").setup({
+	bold = false,
+	italic = false,
+	transparent_mode = true,
+})
+vim.cmd([[
 "color catppuccin
 "color sitruuna
+"color vscode
 color gruvbox
-let g:zig_fmt_autosave = 0
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
