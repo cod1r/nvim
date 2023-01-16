@@ -22,12 +22,9 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'ziglang/zig.vim'
-Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-Plug 'eemed/sitruuna.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'Mofiqul/vscode.nvim'
 Plug 'rust-lang/rust.vim'
 call plug#end()
 let g:zig_fmt_autosave = 0
@@ -38,9 +35,6 @@ require("gruvbox").setup({
 	transparent_mode = true,
 })
 vim.cmd([[
-"color catppuccin
-"color sitruuna
-"color vscode
 color gruvbox
 ]])
 -- <leader> is the '\' key
