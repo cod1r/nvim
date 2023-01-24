@@ -24,18 +24,11 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'ziglang/zig.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'ellisonleao/gruvbox.nvim'
+Plug 'Mofiqul/dracula.nvim'
 Plug 'rust-lang/rust.vim'
 call plug#end()
 let g:zig_fmt_autosave = 0
-]])
-require("gruvbox").setup({
-	bold = false,
-	italic = false,
-	transparent_mode = true,
-})
-vim.cmd([[
-color gruvbox
+color dracula
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
