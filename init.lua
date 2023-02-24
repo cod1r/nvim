@@ -24,11 +24,11 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'ziglang/zig.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'Mofiqul/dracula.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'rust-lang/rust.vim'
 call plug#end()
 let g:zig_fmt_autosave = 0
-color dracula
+color catppuccin
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
