@@ -9,8 +9,8 @@ vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.termguicolors = true
 vim.opt.modelines = 0
-vim.opt.lcs = 'eol:$,tab: >,trail:-,space:-'
-vim.opt.list = true
+-- vim.opt.lcs = 'eol:$,tab: >,trail:-,space:>'
+-- vim.opt.list = true
 vim.opt.signcolumn = 'no'
 vim.cmd([[
 call plug#begin('~/.config/nvim/plugged')
@@ -25,10 +25,14 @@ Plug 'ziglang/zig.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'rebelot/kanagawa.nvim'
+Plug 'chriskempson/base16-vim'
 Plug 'rust-lang/rust.vim'
 call plug#end()
 let g:zig_fmt_autosave = 0
-color catppuccin
+color base16-chalk
+let g:matchparen_timeout = 2
+let g:matchparen_insert_timeout = 2
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
