@@ -26,16 +26,17 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'rebelot/kanagawa.nvim'
-Plug 'chriskempson/base16-vim'
 Plug 'rust-lang/rust.vim'
 call plug#end()
+color kanagawa
 let g:zig_fmt_autosave = 0
-color base16-chalk
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume)
 -- taking away calling the manpages
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
