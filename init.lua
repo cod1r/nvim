@@ -12,6 +12,7 @@ vim.opt.modelines = 0
 -- vim.opt.lcs = 'eol:$,tab: >,trail:-,space:>'
 -- vim.opt.list = true
 vim.opt.signcolumn = 'no'
+
 vim.cmd([[
 call plug#begin('~/.config/nvim/plugged')
 Plug 'leafgarland/typescript-vim'
@@ -25,18 +26,17 @@ Plug 'ziglang/zig.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'rebelot/kanagawa.nvim'
 Plug 'rust-lang/rust.vim'
 call plug#end()
-color kanagawa
 let g:zig_fmt_autosave = 0
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
 ]])
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
-vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep)
 vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume)
+vim.keymap.set('n', '<leader>tb', require('telescope.builtin').buffers)
 -- taking away calling the manpages
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
@@ -51,6 +51,53 @@ function toggle_diagnostics()
     vim.diagnostic.disable()
   end
 end
+
+require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+    },
+    transparent_background = false,
+    show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+    term_colors = false,
+    dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
+    },
+    no_italic = true, -- Force no italic
+    no_bold = false, -- Force no bold
+    styles = {
+        comments = { "italic" },
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+    },
+    color_overrides = {},
+    custom_highlights = {},
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+        notify = false,
+        mini = false,
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+    },
+})
+
+-- setup must be called before loading
+vim.cmd.colorscheme "catppuccin"
+
 
 require('telescope').setup{
   defaults = {
