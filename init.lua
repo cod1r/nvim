@@ -41,7 +41,7 @@ vim.keymap.set('n', '<leader>tb', require('telescope.builtin').buffers)
 -- taking away calling the manpages
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
-diagnostics_active = true
+diagnostics_active = false
 function toggle_diagnostics() 
   diagnostics_active = not diagnostics_active
   if diagnostics_active then
@@ -58,7 +58,7 @@ end
 require("gruvbox").setup({
   undercurl = true,
   underline = true,
-  bold = true,
+  bold = false,
   italic = {
     strings = false,
     comments = false,
@@ -122,7 +122,7 @@ require("catppuccin").setup({
 })
 
 -- setup must be called before loading
-vim.cmd.colorscheme "gruvbox"
+vim.cmd.colorscheme "catppuccin"
 
 
 require('telescope').setup{

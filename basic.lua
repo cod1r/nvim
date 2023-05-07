@@ -1,0 +1,11 @@
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.ts = 2
+vim.opt.sw = 2
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.smartcase = true
+vim.opt.mouse = 'a'
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.termguicolors = true
+vim.opt.modelines = 0
