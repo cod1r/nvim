@@ -11,3 +11,10 @@ vim.opt.termguicolors = true
 vim.opt.modelines = 0
 -- taking away calling the manpages
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
+
+vim.cmd([[
+call plug#begin('~/.config/nvim/plugged')
+Plug 'tanvirtin/monokai.nvim'
+call plug#end()
+]])
+require('monokai').setup {}

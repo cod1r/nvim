@@ -25,6 +25,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'ziglang/zig.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'tanvirtin/monokai.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'rust-lang/rust.vim'
