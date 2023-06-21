@@ -29,6 +29,7 @@ Plug 'tanvirtin/monokai.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'rust-lang/rust.vim'
+Plug 'tikhomirov/vim-glsl'
 call plug#end()
 let g:zig_fmt_autosave = 0
 let g:matchparen_timeout = 2
