@@ -177,30 +177,15 @@ require('cmp').setup {
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-require('lspconfig').denols.setup{
-	root_dir = root_pattern("deno.json", "deno.jsonc")
-}
 require('lspconfig').tsserver.setup{
 	capabilities = capabilities,
 	root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json")
 }
 require('lspconfig').gopls.setup{capabilities = capabilities}
 require('lspconfig').ocamllsp.setup{capabilities = capabilities}
-require('lspconfig').ccls.setup{
-	capabilities = capabilities,
-	init_options = {
-		clang = {
-			extraArgs = {"-std=c++20"}
-		}
-	}
-}
 require'lspconfig'.rust_analyzer.setup{
 	capabilities = capabilities,
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
-}
-require'lspconfig'.zls.setup {
-	capabilities = capabilities,
-	single_file_support = true
 }
 -- vim.diagnostic.config({
 -- 	virtual_text = false
