@@ -15,19 +15,11 @@ vim.opt.signcolumn = 'no'
 
 vim.cmd([[
 call plug#begin('~/.config/nvim/plugged')
-Plug 'leafgarland/typescript-vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip'
 Plug 'ziglang/zig.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'tanvirtin/monokai.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'ellisonleao/gruvbox.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'tikhomirov/vim-glsl'
 call plug#end()
@@ -55,31 +47,6 @@ function toggle_diagnostics()
     vim.diagnostic.disable()
   end
 end
-
--- setup must be called before loading the colorscheme
--- Default options:
-require("gruvbox").setup({
-  undercurl = true,
-  underline = true,
-  bold = false,
-  italic = {
-    strings = false,
-    comments = false,
-    operators = false,
-    folds = false,
-  },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "", -- can be "hard", "soft" or empty string
-  palette_overrides = {},
-  overrides = {},
-  dim_inactive = false,
-  transparent_mode = false,
-})
 
 require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -114,7 +81,6 @@ require("catppuccin").setup({
     color_overrides = {},
     custom_highlights = {},
     integrations = {
-        cmp = true,
         gitsigns = true,
         nvimtree = true,
         telescope = true,
@@ -126,7 +92,6 @@ require("catppuccin").setup({
 
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
-
 
 require('telescope').setup{
   defaults = {
@@ -160,36 +125,15 @@ require('telescope').setup{
 }
 
 local root_pattern = require('lspconfig').util.root_pattern
-require('cmp').setup {
-	snippet = {
-		expand = function(args)
-			require('luasnip').lsp_expand(args.body)
-		end
-	},
-	mapping = require('cmp').mapping.preset.insert({
-		['<CR>'] = require('cmp').mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-	}),
-  sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' }
-  }
-}
 
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 require('lspconfig').tsserver.setup{
-	capabilities = capabilities,
 	root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json")
 }
-require('lspconfig').gopls.setup{capabilities = capabilities}
-require('lspconfig').ocamllsp.setup{capabilities = capabilities}
 require'lspconfig'.rust_analyzer.setup{
 	settings = {
 		['rust-analyzer'] = {
 		}
 	},
-	capabilities = capabilities,
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
 }
 vim.diagnostic.config({
