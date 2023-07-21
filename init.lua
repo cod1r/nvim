@@ -184,11 +184,16 @@ require('lspconfig').tsserver.setup{
 require('lspconfig').gopls.setup{capabilities = capabilities}
 require('lspconfig').ocamllsp.setup{capabilities = capabilities}
 require'lspconfig'.rust_analyzer.setup{
+	settings = {
+		['rust-analyzer'] = {
+		}
+	},
 	capabilities = capabilities,
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
 }
--- vim.diagnostic.config({
--- 	virtual_text = false
--- })
+vim.diagnostic.config({
+	virtual_text = {
+		source = true
+	}
+})
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-vim.o.updatetime = 200
