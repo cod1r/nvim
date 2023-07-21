@@ -35,6 +35,7 @@ let g:zig_fmt_autosave = 0
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
 ]])
+vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
 vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep)
