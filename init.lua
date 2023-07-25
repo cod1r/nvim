@@ -1,3 +1,23 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({
+	'neovim/nvim-lspconfig',
+	'nvim-lua/plenary.nvim',
+	'nvim-telescope/telescope.nvim',
+	'catppuccin/nvim',
+	'rust-lang/rust.vim',
+	'tikhomirov/vim-glsl',
+})
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ts = 2
@@ -12,21 +32,6 @@ vim.opt.modelines = 0
 -- vim.opt.lcs = 'eol:$,tab: >,trail:-,space:>'
 -- vim.opt.list = true
 vim.opt.signcolumn = 'no'
-
-vim.cmd([[
-call plug#begin('~/.config/nvim/plugged')
-Plug 'neovim/nvim-lspconfig'
-Plug 'ziglang/zig.vim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'rust-lang/rust.vim'
-Plug 'tikhomirov/vim-glsl'
-call plug#end()
-let g:zig_fmt_autosave = 0
-let g:matchparen_timeout = 2
-let g:matchparen_insert_timeout = 2
-]])
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
@@ -36,10 +41,8 @@ vim.keymap.set('n', '<leader>tb', require('telescope.builtin').buffers)
 -- taking away calling the manpages
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
-diagnostics_active = false
 function toggle_diagnostics() 
-  diagnostics_active = not diagnostics_active
-  if diagnostics_active then
+  if vim.diagnostic.is_disabled then
     vim.api.nvim_echo({ { "Show diagnostics" } }, false, {})
     vim.diagnostic.enable()
   else
@@ -126,9 +129,6 @@ require('telescope').setup{
 
 local root_pattern = require('lspconfig').util.root_pattern
 
-require('lspconfig').tsserver.setup{
-	root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json")
-}
 require'lspconfig'.rust_analyzer.setup{
 	settings = {
 		['rust-analyzer'] = {
@@ -142,3 +142,7 @@ vim.diagnostic.config({
 	}
 })
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.cmd[[
+let g:matchparen_timeout = 2
+let g:matchparen_insert_timeout = 2
+]]
