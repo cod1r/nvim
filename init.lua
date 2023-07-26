@@ -42,7 +42,7 @@ vim.keymap.set('n', '<leader>tb', require('telescope.builtin').buffers)
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
 function toggle_diagnostics() 
-  if vim.diagnostic.is_disabled then
+  if vim.diagnostic.is_disabled() then
     vim.api.nvim_echo({ { "Show diagnostics" } }, false, {})
     vim.diagnostic.enable()
   else
