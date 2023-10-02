@@ -143,6 +143,7 @@ vim.diagnostic.config({
 		source = true
 	}
 })
+require'lspconfig'.ocamllsp.setup{}
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.cmd[[
 let g:matchparen_timeout = 2
