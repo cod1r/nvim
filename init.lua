@@ -35,6 +35,7 @@ vim.opt.modelines = 0
 vim.opt.signcolumn = 'no'
 vim.opt.updatetime = 1000
 
+vim.keymap.set('n', '<C-S-I>', "<cmd>lua vim.lsp.buf.format()<CR>")
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
