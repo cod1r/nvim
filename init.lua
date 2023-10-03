@@ -17,6 +17,7 @@ require("lazy").setup({
 	'catppuccin/nvim',
 	'rust-lang/rust.vim',
 	'tikhomirov/vim-glsl',
+	'williamboman/mason.nvim'
 })
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -128,7 +129,7 @@ require('telescope').setup{
     -- please take a look at the readme of the extension you want to configure
   }
 }
-
+require("mason").setup()
 local root_pattern = require('lspconfig').util.root_pattern
 
 require'lspconfig'.rust_analyzer.setup{

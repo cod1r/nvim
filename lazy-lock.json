@@ -1,9 +1,10 @@
 {
   "lazy.nvim": { "branch": "main", "commit": "59335c5b9d116f5d3948f833288a89e2a829a005" },
+  "mason.nvim": { "branch": "main", "commit": "d66c60e17dd6fd8165194b1d14d21f7eb2c1697a" },
   "nvim": { "branch": "main", "commit": "7a4bcdadafc59a5bedbd866c643fa486d8cca4a1" },
-  "nvim-lspconfig": { "branch": "master", "commit": "eb1b53162755888ff75e495797071644d983bff7" },
+  "nvim-lspconfig": { "branch": "master", "commit": "361a2878a41f23452457eec12a807ff59bc75882" },
   "plenary.nvim": { "branch": "master", "commit": "9ce85b0f7dcfe5358c0be937ad23e456907d410b" },
   "rust.vim": { "branch": "master", "commit": "889b9a7515db477f4cb6808bef1769e53493c578" },
-  "telescope.nvim": { "branch": "master", "commit": "7d51950854a3f8853c5c0d570757095e9a5af313" },
+  "telescope.nvim": { "branch": "master", "commit": "8c69f58427f98b2ca39a90a36db830c06e30351c" },
   "vim-glsl": { "branch": "master", "commit": "bfd330a271933c3372fcfa8ce052970746c8e9dd" }
 }
