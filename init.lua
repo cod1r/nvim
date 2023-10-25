@@ -35,7 +35,8 @@ vim.opt.modelines = 0
 vim.opt.signcolumn = 'no'
 vim.opt.updatetime = 1000
 
-vim.keymap.set('n', '<C-S-I>', "<cmd>lua vim.lsp.buf.format()<CR>")
+vim.keymap.set('n', '<leader>gd', vim.diagnostic.setqflist)
+vim.keymap.set('n', '<C-S-I>', vim.lsp.buf.format)
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
@@ -141,9 +142,7 @@ require'lspconfig'.rust_analyzer.setup{
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
 }
 vim.diagnostic.config({
-	virtual_text = {
-		source = true
-	}
+	virtual_text = false
 })
 require'lspconfig'.ocamllsp.setup{}
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
