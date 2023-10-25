@@ -32,9 +32,10 @@ vim.opt.termguicolors = true
 vim.opt.modelines = 0
 -- vim.opt.lcs = 'eol:$,tab: >,trail:-,space:>'
 -- vim.opt.list = true
-vim.opt.signcolumn = 'no'
+vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 1000
 
+vim.keymap.set('n', 'gf', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>gd', vim.diagnostic.setqflist)
 vim.keymap.set('n', '<C-S-I>', vim.lsp.buf.format)
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
