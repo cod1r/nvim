@@ -56,6 +56,10 @@ function toggle_diagnostics()
     vim.diagnostic.disable()
   end
 end
+vim.diagnostic.config({
+	virtual_text = false,
+	underline = false,
+})
 
 require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -142,9 +146,6 @@ require'lspconfig'.rust_analyzer.setup{
 	},
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
 }
-vim.diagnostic.config({
-	virtual_text = false
-})
 require'lspconfig'.ocamllsp.setup{}
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.cmd[[
