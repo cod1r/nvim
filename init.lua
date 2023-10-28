@@ -34,6 +34,7 @@ vim.opt.modelines = 0
 vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 1000
 
+vim.keymap.set('n', '<leader>fd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gf', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>gd', vim.diagnostic.setqflist)
 vim.keymap.set('n', '<C-S-I>', vim.lsp.buf.format)
