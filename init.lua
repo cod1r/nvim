@@ -38,7 +38,7 @@ vim.opt.updatetime = 1000
 vim.keymap.set('n', '<leader>fd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gf', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>gw', vim.diagnostic.setqflist)
-vim.keymap.set('n', '<C-S-I>', vim.lsp.buf.format)
+vim.keymap.set('n', '<C-f>', vim.lsp.buf.format)
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
