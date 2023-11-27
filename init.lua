@@ -105,7 +105,7 @@ require("catppuccin").setup({
 })
 
 -- setup must be called before loading
-vim.cmd.colorscheme "gruvbox"
+vim.cmd.colorscheme "catppuccin"
 
 require('telescope').setup{
   defaults = {
