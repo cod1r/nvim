@@ -47,6 +47,7 @@ vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume)
 vim.keymap.set('n', '<leader>tb', require('telescope.builtin').buffers)
 -- taking away calling the manpages
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
+vim.keymap.set({ 'n', 'v' }, '=', '<Nop>')
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
 function toggle_diagnostics() 
   if vim.diagnostic.is_disabled() then
