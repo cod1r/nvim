@@ -17,7 +17,8 @@ require("lazy").setup({
 	'catppuccin/nvim',
 	'rust-lang/rust.vim',
 	'tikhomirov/vim-glsl',
-	'morhetz/gruvbox'
+	'morhetz/gruvbox',
+	'seandewar/paragon.vim'
 })
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -106,7 +107,7 @@ require("catppuccin").setup({
 })
 
 -- setup must be called before loading
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "paragon"
 
 require('telescope').setup{
   defaults = {
