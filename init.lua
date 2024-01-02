@@ -153,7 +153,7 @@ require'lspconfig'.tsserver.setup{
 }
 require'lspconfig'.ocamllsp.setup{}
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-vim.cmd [[autocmd BufEnter *.tsx,*.jsx set filetype=javascript]]
+vim.cmd [[autocmd BufEnter *.tsx set filetype=typescript]]
 vim.cmd[[
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
