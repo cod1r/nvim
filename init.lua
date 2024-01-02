@@ -107,7 +107,7 @@ require("catppuccin").setup({
 })
 
 -- setup must be called before loading
-vim.cmd.colorscheme "paragon"
+vim.cmd.colorscheme "catppuccin"
 
 require('telescope').setup{
   defaults = {
@@ -147,6 +147,9 @@ require'lspconfig'.rust_analyzer.setup{
 		}
 	},
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
+}
+require'lspconfig'.tsserver.setup{
+	root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git")
 }
 require'lspconfig'.ocamllsp.setup{}
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
