@@ -151,6 +151,7 @@ require'lspconfig'.rust_analyzer.setup{
 require'lspconfig'.tsserver.setup{
 	root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git")
 }
+require'lspconfig'.clangd.setup{}
 require'lspconfig'.ocamllsp.setup{}
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.cmd [[autocmd BufEnter *.tsx set filetype=typescriptreact]]
