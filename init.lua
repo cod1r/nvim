@@ -36,6 +36,10 @@ vim.opt.modelines = 0
 vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 1000
 
+-- vim can lose track of syntax and highlight syntax incorrectly so when it breaks, run this
+-- resources: https://github.com/vim/vim/issues/2790 and https://vim.fandom.com/wiki/Fix_syntax_highlighting
+vim.keymap.set('n', '<C-l>', '<cmd>syn sync fromstart<CR>')
+
 vim.keymap.set('n', '<leader>fd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gf', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>gw', vim.diagnostic.setqflist)
@@ -102,6 +106,7 @@ require("catppuccin").setup({
         telescope = true,
         notify = false,
         mini = false,
+				native_lsp = true,
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
 })
