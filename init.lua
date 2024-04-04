@@ -25,7 +25,7 @@ require("lazy").setup({
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 			configs.setup({
-				ensure_installed = { "c", "cpp", "rust", "typescript", "javascript", "python", "tsx" },
+				ensure_installed = { "c", "cpp", "rust", "typescript", "javascript", "python", "tsx", "lua" },
 			})
 		end
 	}
