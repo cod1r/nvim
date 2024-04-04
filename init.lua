@@ -159,6 +159,16 @@ require('telescope').setup{
     -- please take a look at the readme of the extension you want to configure
   }
 }
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 local root_pattern = require('lspconfig').util.root_pattern
 
 require'lspconfig'.rust_analyzer.setup{
