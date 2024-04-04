@@ -18,7 +18,17 @@ require("lazy").setup({
 	'rust-lang/rust.vim',
 	'tikhomirov/vim-glsl',
 	'morhetz/gruvbox',
-	'seandewar/paragon.vim'
+	'seandewar/paragon.vim',
+	{
+		'nvim-treesitter/nvim-treesitter',
+		build = ':TSUpdate',
+		config = function()
+			local configs = require("nvim-treesitter.configs")
+			configs.setup({
+				ensure_installed = { "c", "cpp", "rust", "typescript", "javascript", "python", "tsx" },
+			})
+		end
+	}
 })
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -38,6 +48,7 @@ vim.opt.updatetime = 1000
 
 -- vim can lose track of syntax and highlight syntax incorrectly so when it breaks, run this
 -- resources: https://github.com/vim/vim/issues/2790 and https://vim.fandom.com/wiki/Fix_syntax_highlighting
+-- we might not need this anymore because of treesitter
 vim.keymap.set('n', '<C-l>', '<cmd>syn sync fromstart<CR>')
 
 vim.keymap.set('n', '<leader>fd', vim.lsp.buf.definition)
