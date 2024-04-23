@@ -1,12 +1,12 @@
 {
   "gruvbox": { "branch": "master", "commit": "f1ecde848f0cdba877acb0c740320568252cc482" },
-  "lazy.nvim": { "branch": "main", "commit": "83493db50a434a4c5c648faf41e2ead80f96e478" },
-  "nvim": { "branch": "main", "commit": "045e3499d9ec8d84635fb08877ae44fd33f6a38d" },
-  "nvim-lspconfig": { "branch": "master", "commit": "8c1831817d40925d22cd8a555296c44c02fdaaf5" },
-  "nvim-treesitter": { "branch": "master", "commit": "cc0e29727a9651e27869b7444e835c44fb1e7b4c" },
+  "lazy.nvim": { "branch": "main", "commit": "3f13f080434ac942b150679223d54f5ca91e0d52" },
+  "nvim": { "branch": "main", "commit": "a1439ad7c584efb3d0ce14ccb835967f030450fe" },
+  "nvim-lspconfig": { "branch": "master", "commit": "94874383aea04f259a81cf9e40750be60d5bcb30" },
+  "nvim-treesitter": { "branch": "master", "commit": "dc71d94fe223763d28ab49ee3de4fd7081a84891" },
   "paragon.vim": { "branch": "master", "commit": "a40cc234463b633ced7fde9768195d4241e4284d" },
-  "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
+  "plenary.nvim": { "branch": "master", "commit": "5129a3693c482fcbc5ab99a7706ffc4360b995a0" },
   "rust.vim": { "branch": "master", "commit": "889b9a7515db477f4cb6808bef1769e53493c578" },
-  "telescope.nvim": { "branch": "master", "commit": "c816406bd50ade6ec754474f08974154487d417c" },
+  "telescope.nvim": { "branch": "master", "commit": "7d1698f3d88b448e0639974248cc17f49b7b8acf" },
   "vim-glsl": { "branch": "master", "commit": "bfd330a271933c3372fcfa8ce052970746c8e9dd" }
 }
