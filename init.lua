@@ -19,13 +19,14 @@ require("lazy").setup({
 	'tikhomirov/vim-glsl',
 	'morhetz/gruvbox',
 	'seandewar/paragon.vim',
+	'github/copilot.vim',
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 			configs.setup({
-				ensure_installed = { "c", "cpp", "rust", "typescript", "javascript", "python", "tsx", "lua" },
+				ensure_installed = { "c", "cpp", "rust", "typescript", "javascript", "python", "tsx", "lua", "vimdoc" },
 			})
 		end
 	}
