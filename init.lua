@@ -52,6 +52,7 @@ vim.opt.updatetime = 1000
 -- we might not need this anymore because of treesitter
 vim.keymap.set('n', '<C-l>', '<cmd>syn sync fromstart<CR>')
 
+vim.keymap.set('n', '<leader>fr', vim.lsp.buf.references)
 vim.keymap.set('n', '<leader>fd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gf', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>gd', vim.diagnostic.setqflist)
