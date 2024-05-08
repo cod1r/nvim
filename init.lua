@@ -32,7 +32,7 @@ require("lazy").setup({
 	}
 })
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.ts = 2
 vim.opt.sw = 2
 vim.opt.smartindent = true
