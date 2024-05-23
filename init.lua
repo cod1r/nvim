@@ -57,6 +57,7 @@ vim.keymap.set('n', '<leader>fd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gf', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>gd', vim.diagnostic.setqflist)
 vim.keymap.set('n', '<leader>ge', '<cmd>lua vim.diagnostic.setqflist({severity = vim.diagnostic.severity.ERROR})<CR>')
+vim.keymap.set('n', '<leader>gw', '<cmd>lua vim.diagnostic.setqflist({severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.WARN }})<CR>')
 vim.keymap.set('n', '<C-f>', vim.lsp.buf.format)
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
 -- <leader> is the '\' key
