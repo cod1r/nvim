@@ -173,6 +173,10 @@ require'nvim-treesitter.configs'.setup {
 }
 local root_pattern = require('lspconfig').util.root_pattern
 
+require'lspconfig'.denols.setup{
+	root_dir = root_pattern("deno.json", "deno.jsonc"),
+	single_file_support = false
+}
 require'lspconfig'.rust_analyzer.setup{
 	settings = {
 		['rust-analyzer'] = {
@@ -181,7 +185,8 @@ require'lspconfig'.rust_analyzer.setup{
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
 }
 require'lspconfig'.tsserver.setup{
-	root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git")
+	root_dir = root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git"),
+	single_file_support = false
 }
 require'lspconfig'.ccls.setup{}
 require'lspconfig'.ocamllsp.setup{}
