@@ -185,7 +185,7 @@ require'lspconfig'.rust_analyzer.setup{
 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
 }
 require'lspconfig'.tsserver.setup{
-	root_dir = root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git"),
+	root_dir = root_pattern("tsconfig.json", "package.json"),
 	single_file_support = false
 }
 require'lspconfig'.ccls.setup{}
