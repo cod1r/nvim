@@ -19,6 +19,8 @@ require("lazy").setup({
 	'tikhomirov/vim-glsl',
 	'morhetz/gruvbox',
 	'seandewar/paragon.vim',
+	'junegunn/fzf',
+	'junegunn/fzf.vim',
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
@@ -60,7 +62,7 @@ vim.keymap.set('n', '<leader>gw', '<cmd>lua vim.diagnostic.setqflist({severity =
 vim.keymap.set('n', '<C-f>', vim.lsp.buf.format)
 vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
 -- <leader> is the '\' key
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
+vim.keymap.set('n', '<leader>ff', '<cmd>Files<CR>')
 vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep)
 vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume)
 vim.keymap.set('n', '<leader>tb', require('telescope.builtin').buffers)
@@ -161,6 +163,7 @@ require('telescope').setup{
     -- please take a look at the readme of the extension you want to configure
   }
 }
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
