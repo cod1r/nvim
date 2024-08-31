@@ -21,16 +21,6 @@ require("lazy").setup({
 	'seandewar/paragon.vim',
 	'junegunn/fzf',
 	'junegunn/fzf.vim',
-	{
-		'nvim-treesitter/nvim-treesitter',
-		build = ':TSUpdate',
-		config = function()
-			local configs = require("nvim-treesitter.configs")
-			configs.setup({
-				ensure_installed = { "c", "cpp", "rust", "typescript", "javascript", "python", "tsx", "lua", "vimdoc" },
-			})
-		end
-	}
 })
 vim.opt.number = true
 vim.opt.relativenumber = false
@@ -46,7 +36,7 @@ vim.opt.modelines = 0
 -- vim.opt.lcs = 'eol:$,tab: >,trail:-,space:>'
 -- vim.opt.list = true
 vim.opt.signcolumn = 'yes'
-vim.opt.updatetime = 1000
+vim.opt.shadafile = "NONE"
 
 -- vim can lose track of syntax and highlight syntax incorrectly so when it breaks, run this
 -- resources: https://github.com/vim/vim/issues/2790 and https://vim.fandom.com/wiki/Fix_syntax_highlighting
@@ -164,16 +154,6 @@ require('telescope').setup{
   }
 }
 
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
 local root_pattern = require('lspconfig').util.root_pattern
 
 require'lspconfig'.denols.setup{
