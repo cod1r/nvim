@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-	'neovim/nvim-lspconfig',
+	-- 'neovim/nvim-lspconfig',
 	'nvim-lua/plenary.nvim',
 	'nvim-telescope/telescope.nvim',
 	'catppuccin/nvim',
@@ -21,6 +21,11 @@ require("lazy").setup({
 	'seandewar/paragon.vim',
 	'junegunn/fzf',
 	'junegunn/fzf.vim',
+	{
+		'neoclide/coc.nvim',
+		build = "npm i && npm build",
+		lazy = false
+	},
 })
 vim.opt.number = true
 vim.opt.relativenumber = false
@@ -38,19 +43,18 @@ vim.opt.modelines = 0
 vim.opt.signcolumn = 'yes'
 vim.opt.shadafile = "NONE"
 
+vim.opt.synmaxcol = 1000
+
 -- vim can lose track of syntax and highlight syntax incorrectly so when it breaks, run this
 -- resources: https://github.com/vim/vim/issues/2790 and https://vim.fandom.com/wiki/Fix_syntax_highlighting
 -- we might not need this anymore because of treesitter
 vim.keymap.set('n', '<C-l>', '<cmd>syn sync fromstart<CR>')
 
-vim.keymap.set('n', '<leader>fr', vim.lsp.buf.references)
-vim.keymap.set('n', '<leader>fd', vim.lsp.buf.definition)
-vim.keymap.set('n', 'gf', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>gd', vim.diagnostic.setqflist)
-vim.keymap.set('n', '<leader>ge', '<cmd>lua vim.diagnostic.setqflist({severity = vim.diagnostic.severity.ERROR})<CR>')
-vim.keymap.set('n', '<leader>gw', '<cmd>lua vim.diagnostic.setqflist({severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.WARN }})<CR>')
-vim.keymap.set('n', '<C-f>', vim.lsp.buf.format)
-vim.keymap.set('n', 'gh', vim.lsp.buf.hover)
+vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.fn.CocAction("jumpReferences")<CR>')
+vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.fn.CocActionAsync("jumpDefinition")<CR>')
+vim.keymap.set('n', '<leader>gd', '<cmd>CocDiagnostic<CR>')
+vim.cmd[[inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"]]
+vim.keymap.set('n', 'gh', '<cmd>lua vim.fn.CocActionAsync("doHover")<CR>')
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', '<cmd>Files<CR>')
 vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep)
@@ -154,25 +158,26 @@ require('telescope').setup{
   }
 }
 
-local root_pattern = require('lspconfig').util.root_pattern
-
-require'lspconfig'.denols.setup{
-	root_dir = root_pattern("deno.json", "deno.jsonc"),
-	single_file_support = false
-}
-require'lspconfig'.rust_analyzer.setup{
-	settings = {
-		['rust-analyzer'] = {
-		}
-	},
-	root_dir = root_pattern("Cargo.toml", "rust-project.json")
-}
-require'lspconfig'.tsserver.setup{
-	root_dir = root_pattern("tsconfig.json", "package.json"),
-	single_file_support = false
-}
-require'lspconfig'.ccls.setup{}
-require'lspconfig'.ocamllsp.setup{}
+-- lspconfig is too slow with tsserver for now
+-- local root_pattern = require('lspconfig').util.root_pattern
+--
+-- require'lspconfig'.denols.setup{
+-- 	root_dir = root_pattern("deno.json", "deno.jsonc"),
+-- 	single_file_support = false
+-- }
+-- require'lspconfig'.rust_analyzer.setup{
+-- 	settings = {
+-- 		['rust-analyzer'] = {
+-- 		}
+-- 	},
+-- 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
+-- }
+-- require'lspconfig'.tsserver.setup{
+-- 	root_dir = root_pattern("tsconfig.json", "package.json"),
+-- 	single_file_support = false
+-- }
+-- require'lspconfig'.ccls.setup{}
+-- require'lspconfig'.ocamllsp.setup{}
 -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.cmd [[autocmd BufEnter *.tsx set filetype=typescriptreact]]
 vim.cmd[[
