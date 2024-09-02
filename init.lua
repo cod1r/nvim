@@ -59,7 +59,7 @@ vim.keymap.set('n', 'gh', '<cmd>lua vim.fn.CocActionAsync("doHover")<CR>')
 vim.keymap.set('n', '<leader>ff', '<cmd>Files<CR>')
 vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep)
 vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume)
-vim.keymap.set('n', '<leader>tb', require('telescope.builtin').buffers)
+vim.keymap.set('n', '<leader>tb', '<cmd>Buffers<CR>')
 -- taking away calling the manpages
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, '=', '<Nop>')
