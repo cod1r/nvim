@@ -50,7 +50,7 @@ vim.opt.synmaxcol = 1000
 -- we might not need this anymore because of treesitter
 vim.keymap.set('n', '<C-l>', '<cmd>syn sync fromstart<CR>')
 
-vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.fn.CocAction("jumpReferences")<CR>')
+vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.fn.CocActionAsync("jumpReferences")<CR>')
 vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.fn.CocActionAsync("jumpDefinition")<CR>')
 vim.keymap.set('n', '<leader>gd', '<cmd>CocDiagnostic<CR>')
 vim.cmd[[inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"]]
@@ -58,7 +58,6 @@ vim.keymap.set('n', 'gh', '<cmd>lua vim.fn.CocActionAsync("doHover")<CR>')
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', '<cmd>Files<CR>')
 vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep)
-vim.keymap.set('n', '<leader>tr', require('telescope.builtin').resume)
 vim.keymap.set('n', '<leader>tb', '<cmd>Buffers<CR>')
 -- taking away calling the manpages
 vim.keymap.set({ 'n', 'v' }, '<S-k>', '<Nop>')
