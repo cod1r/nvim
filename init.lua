@@ -66,13 +66,14 @@ vim.keymap.set({ 'n', 'v' }, '=', '<Nop>')
 vim.keymap.set({ 'n', 'v' }, 'gf', '<Nop>')
 
 vim.keymap.set("n", "<leader>d", "<cmd>lua toggle_diagnostics()<CR>")
+local diagnostics = true
 function toggle_diagnostics() 
-  if vim.diagnostic.is_disabled() then
-    vim.api.nvim_echo({ { "Show diagnostics" } }, false, {})
-    vim.diagnostic.enable()
+  if diagnostics == false then
+		diagnostics = true
+		vim.cmd[[:CocEnable]]
   else
-    vim.api.nvim_echo({ { "Disable diagnostics" } }, false, {})
-    vim.diagnostic.disable()
+		diagnostics = false
+		vim.cmd[[:CocDisable]]
   end
 end
 vim.diagnostic.config({
