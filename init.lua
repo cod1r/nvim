@@ -50,6 +50,7 @@ vim.opt.synmaxcol = 1000
 -- we might not need this anymore because of treesitter
 vim.keymap.set('n', '<C-l>', '<cmd>syn sync fromstart<CR>')
 
+vim.api.nvim_create_user_command('Fmt', 'lua vim.fn.CocAction("format")<CR>', {})
 vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.fn.CocActionAsync("jumpReferences")<CR>')
 vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.fn.CocActionAsync("jumpDefinition")<CR>')
 vim.keymap.set('n', '<leader>gd', '<cmd>CocDiagnostic<CR>')
