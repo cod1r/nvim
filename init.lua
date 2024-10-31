@@ -50,6 +50,13 @@ vim.opt.synmaxcol = 1000
 -- we might not need this anymore because of treesitter
 vim.keymap.set('n', '<C-l>', '<cmd>syn sync fromstart<CR>')
 
+function buffer_delete_all()
+	local bufs = vim.api.nvim_list_bufs()
+	for i=1,#bufs do
+		vim.api.nvim_buf_delete(bufs[i], {})
+	end
+end
+vim.api.nvim_create_user_command('Bda', 'lua buffer_delete_all()<CR>', {})
 vim.api.nvim_create_user_command('Fmt', 'lua vim.fn.CocAction("format")<CR>', {})
 vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.fn.CocActionAsync("jumpReferences")<CR>')
 vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.fn.CocActionAsync("jumpDefinition")<CR>')
