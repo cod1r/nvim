@@ -1,3 +1,6 @@
 {
-	"typescript.autoClosingTags": false
+	"typescript.autoClosingTags": false,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "eslint.validate": ["typescript", "typescriptreact"]
 }
