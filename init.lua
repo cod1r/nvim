@@ -58,6 +58,7 @@ function buffer_delete_all()
 end
 vim.api.nvim_create_user_command('Bda', 'lua buffer_delete_all()<CR>', {})
 vim.api.nvim_create_user_command('Fmt', 'lua vim.fn.CocAction("format")<CR>', {})
+vim.keymap.set('n', '<leader><S-t>', '<cmd>tabnew<CR>')
 vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.fn.CocActionAsync("jumpReferences")<CR>')
 vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.fn.CocActionAsync("jumpDefinition")<CR>')
 vim.keymap.set('n', '<leader>gd', '<cmd>CocDiagnostic<CR>')
