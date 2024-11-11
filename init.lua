@@ -27,6 +27,7 @@ require("lazy").setup({
 		lazy = false
 	},
 })
+vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.ts = 2
