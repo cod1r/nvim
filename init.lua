@@ -97,7 +97,7 @@ vim.diagnostic.config({
 })
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "rust", "javascript", "haskell", "cpp", "python" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "rust", "javascript", "haskell", "cpp", "python", "graphql" },
   highlight = {
     enable = true,
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.

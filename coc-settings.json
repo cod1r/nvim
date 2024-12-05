@@ -2,5 +2,12 @@
 	"typescript.autoClosingTags": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
-  "eslint.validate": ["typescript", "typescriptreact"]
+  "eslint.validate": ["typescript", "typescriptreact"],
+	"languageserver": {
+		"graphql": {
+			"command": "graphql-lsp",
+			"args": ["server", "-m", "stream"],
+			"filetypes": ["typescript", "typescriptreact", "graphql"]
+		}
+	}
 }
