@@ -22,8 +22,12 @@ require("lazy").setup({
 	'junegunn/fzf',
 	'junegunn/fzf.vim',
 	{
+		'nvim-treesitter/nvim-treesitter',
+		build = ":TSUpdate"
+	},
+	{
 		'neoclide/coc.nvim',
-		build = "npm i && npm build",
+		build = "npm i && npm run build",
 		lazy = false
 	},
 })
@@ -86,10 +90,23 @@ function toggle_diagnostics()
 		vim.cmd[[:CocDisable]]
   end
 end
+
 vim.diagnostic.config({
 	virtual_text = false,
 	underline = false,
 })
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "rust", "javascript", "haskell", "cpp", "python" },
+  highlight = {
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 
 require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
