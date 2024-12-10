@@ -66,6 +66,7 @@ vim.api.nvim_create_user_command('Fmt', 'lua vim.fn.CocAction("format")<CR>', {}
 vim.keymap.set('n', '<leader><S-t>', '<cmd>tabnew<CR>')
 vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.fn.CocActionAsync("jumpReferences")<CR>')
 vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.fn.CocActionAsync("jumpDefinition")<CR>')
+vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.fn.CocActionAsync("refactor")<CR>')
 vim.keymap.set('n', '<leader>gd', '<cmd>CocDiagnostic<CR>')
 vim.cmd[[inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"]]
 vim.keymap.set('n', 'gh', '<cmd>lua vim.fn.CocActionAsync("doHover")<CR>')
