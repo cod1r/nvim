@@ -31,7 +31,7 @@ require("lazy").setup({
 		lazy = false
 	},
 })
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.ts = 2
@@ -98,7 +98,7 @@ vim.diagnostic.config({
 })
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "rust", "javascript", "haskell", "cpp", "python", "graphql" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "rust", "javascript", "haskell", "cpp", "python", "graphql", "tsx" },
   highlight = {
     enable = true,
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.

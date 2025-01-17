@@ -6,7 +6,7 @@
 	"languageserver": {
 		"graphql": {
 			"command": "graphql-lsp",
-			"args": ["server", "-m", "stream"],
+      "args": ["server", "-m", "stream"],
 			"filetypes": ["typescript", "typescriptreact", "graphql"]
 		},
 		"rust": {
