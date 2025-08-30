@@ -2,7 +2,9 @@
 	"typescript.autoClosingTags": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "tsserver.tsdk": "/Users/cod1r/.local/share/fnm/node-versions/v23.6.0/installation/lib/node_modules/typescript/lib",
   "eslint.validate": ["typescript", "typescriptreact"],
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/19.1.2/clangd_19.1.2/bin/clangd",
 	"languageserver": {
 		"graphql": {
 			"command": "graphql-lsp",
@@ -13,6 +15,11 @@
 			"command": "rust-analyzer",
 			"filetypes": ["rust"],
 			"rootPatterns": ["Cargo.toml"]
-		}
-	}
+		},
+    "ocaml": {
+      "command": "ocamllsp",
+      "args": [],
+      "filetypes": ["ocaml"]
+    }
+  }
 }

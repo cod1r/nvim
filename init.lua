@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
+  "nyoom-engineering/oxocarbon.nvim",
 	-- 'neovim/nvim-lspconfig',
 	'nvim-lua/plenary.nvim',
 	'nvim-telescope/telescope.nvim',
@@ -153,7 +154,8 @@ require("catppuccin").setup({
 })
 
 -- setup must be called before loading
-vim.cmd.colorscheme "catppuccin"
+vim.opt.background = "light"
+vim.cmd.colorscheme "oxocarbon"
 
 require('telescope').setup{
   defaults = {
