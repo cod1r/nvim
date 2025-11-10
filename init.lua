@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   "nyoom-engineering/oxocarbon.nvim",
-	-- 'neovim/nvim-lspconfig',
+	'neovim/nvim-lspconfig',
 	'nvim-lua/plenary.nvim',
 	'nvim-telescope/telescope.nvim',
 	'catppuccin/nvim',
@@ -25,11 +25,6 @@ require("lazy").setup({
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ":TSUpdate"
-	},
-	{
-		'neoclide/coc.nvim',
-		build = "npm i && npm run build",
-		lazy = false
 	},
 })
 vim.opt.wrap = true
@@ -63,14 +58,14 @@ function buffer_delete_all()
 	end
 end
 vim.api.nvim_create_user_command('Bda', 'lua buffer_delete_all()<CR>', {})
-vim.api.nvim_create_user_command('Fmt', 'lua vim.fn.CocAction("format")<CR>', {})
+vim.api.nvim_create_user_command('Fmt', 'lua vim.lsp.buf.format()<CR>', {})
 vim.keymap.set('n', '<leader><S-t>', '<cmd>tabnew<CR>')
-vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.fn.CocActionAsync("jumpReferences")<CR>')
-vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.fn.CocActionAsync("jumpDefinition")<CR>')
-vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.fn.CocActionAsync("refactor")<CR>')
-vim.keymap.set('n', '<leader>gd', '<cmd>CocDiagnostic<CR>')
+vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>')
+vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.diagnostic.setqflist()<CR>')
 vim.cmd[[inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"]]
-vim.keymap.set('n', 'gh', '<cmd>lua vim.fn.CocActionAsync("doHover")<CR>')
+vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', '<cmd>Files<CR>')
 vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep)
@@ -86,10 +81,10 @@ local diagnostics = true
 function toggle_diagnostics() 
   if diagnostics == false then
 		diagnostics = true
-		vim.cmd[[:CocEnable]]
+		vim.diagnostic.enable(true)
   else
 		diagnostics = false
-		vim.cmd[[:CocDisable]]
+		vim.diagnostic.enable(false)
   end
 end
 
@@ -154,8 +149,7 @@ require("catppuccin").setup({
 })
 
 -- setup must be called before loading
-vim.opt.background = "light"
-vim.cmd.colorscheme "oxocarbon"
+vim.cmd.colorscheme "catppuccin"
 
 require('telescope').setup{
   defaults = {
@@ -192,26 +186,25 @@ require('telescope').setup{
 }
 
 -- lspconfig is too slow with tsserver for now
--- local root_pattern = require('lspconfig').util.root_pattern
---
--- require'lspconfig'.denols.setup{
--- 	root_dir = root_pattern("deno.json", "deno.jsonc"),
--- 	single_file_support = false
--- }
--- require'lspconfig'.rust_analyzer.setup{
--- 	settings = {
--- 		['rust-analyzer'] = {
--- 		}
--- 	},
--- 	root_dir = root_pattern("Cargo.toml", "rust-project.json")
--- }
--- require'lspconfig'.tsserver.setup{
--- 	root_dir = root_pattern("tsconfig.json", "package.json"),
--- 	single_file_support = false
--- }
--- require'lspconfig'.ccls.setup{}
--- require'lspconfig'.ocamllsp.setup{}
--- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+vim.lsp.config('denols', {
+	root_markers = {"deno.json", "deno.jsonc"},
+	single_file_support = false
+})
+vim.lsp.config('rust_analyzer', {
+	settings = {
+		['rust-analyzer'] = {
+		}
+	},
+	root_markers = {"Cargo.toml", "rust-project.json"}
+})
+vim.lsp.config('tsserver', {
+	root_markers = {"tsconfig.json", "package.json"},
+	single_file_support = false
+})
+vim.lsp.config('ccls', {})
+vim.lsp.config('ocamllsp', {})
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.cmd [[autocmd BufEnter *.tsx set filetype=typescriptreact]]
 vim.cmd[[
 let g:matchparen_timeout = 2
