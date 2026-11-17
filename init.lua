@@ -57,6 +57,7 @@ vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>')
 vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.diagnostic.setqflist()<CR>')
+vim.keymap.set('n', '<leader>of', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>')
 vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', '<cmd>Files<CR>')
@@ -167,7 +168,6 @@ require('telescope').setup{
 
 -- lspconfig is too slow with tsserver for now
 
-vim.lsp.enable('rust_analzyer')
 vim.lsp.config('rust_analyzer', {
 	settings = {
 		['rust-analyzer'] = {
@@ -175,16 +175,16 @@ vim.lsp.config('rust_analyzer', {
 	},
 	root_markers = {"Cargo.toml", "rust-project.json"}
 })
-vim.lsp.enable('tsserver')
+vim.lsp.enable('rust_analyzer')
 vim.lsp.config('tsserver', {
 	root_markers = {"tsconfig.json", "package.json"},
 	single_file_support = false
 })
-vim.lsp.enable('ccls')
+vim.lsp.enable('tsserver')
 vim.lsp.config('ccls', {})
+vim.lsp.enable('ccls')
 vim.lsp.config('ocamllsp', {})
 vim.lsp.enable('ocamllsp')
--- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.cmd [[autocmd BufEnter *.tsx set filetype=typescriptreact]]
 vim.cmd[[
 let g:matchparen_timeout = 2
