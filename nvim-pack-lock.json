@@ -1,0 +1,36 @@
+{
+  "plugins": {
+    "fzf": {
+      "rev": "4499615fe9c06c0651aa5650e5d0d0a5face99a8",
+      "src": "https://github.com/junegunn/fzf"
+    },
+    "fzf.vim": {
+      "rev": "fe5f1fd45418c1a4d905f44a59357008058cc789",
+      "src": "https://github.com/junegunn/fzf.vim"
+    },
+    "nvim": {
+      "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
+      "src": "https://github.com/catppuccin/nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "e1c6a5a45d95ad22cf55c874db2ff8ab969556f0",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "b706d642dd20d0922e7e92365dc73617f0fdb4ea",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "rust.vim": {
+      "rev": "2beee60144703b574fd95adaa07e0dfd83e71006",
+      "src": "https://github.com/rust-lang/rust.vim"
+    },
+    "telescope.nvim": {
+      "rev": "1e1bab730218eaf97fce743be3f56e51075928ac",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
+    }
+  }
+}

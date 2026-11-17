@@ -1,30 +1,22 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
-  "nyoom-engineering/oxocarbon.nvim",
-	'neovim/nvim-lspconfig',
-	'nvim-lua/plenary.nvim',
-	'nvim-telescope/telescope.nvim',
-	'catppuccin/nvim',
-	'rust-lang/rust.vim',
-	'tikhomirov/vim-glsl',
-	'morhetz/gruvbox',
-	'seandewar/paragon.vim',
-	'junegunn/fzf',
-	'junegunn/fzf.vim',
+vim.pack.add({
+	'https://github.com/neovim/nvim-lspconfig',
+	'https://github.com/nvim-lua/plenary.nvim',
+	'https://github.com/nvim-telescope/telescope.nvim',
+	'https://github.com/catppuccin/nvim',
+	'https://github.com/rust-lang/rust.vim',
+	'https://github.com/junegunn/fzf',
+	'https://github.com/junegunn/fzf.vim',
 	{
-		'nvim-treesitter/nvim-treesitter',
-		build = ":TSUpdate"
+		src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+		ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "rust", "javascript", "haskell", "cpp", "python", "graphql", "tsx" },
+		highlight = {
+			enable = true,
+			-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+			-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+			-- Using this option may slow down your editor, and you may see some duplicate highlights.
+			-- Instead of true it can also be a list of languages
+			additional_vim_regex_highlighting = false,
+		},
 	},
 })
 vim.opt.wrap = true
@@ -43,6 +35,7 @@ vim.opt.modelines = 0
 -- vim.opt.list = true
 vim.opt.signcolumn = 'yes'
 vim.opt.shadafile = "NONE"
+vim.opt.updatetime = 200
 
 vim.opt.synmaxcol = 1000
 
@@ -64,7 +57,6 @@ vim.keymap.set('n', '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>')
 vim.keymap.set('n', '<leader>fd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.diagnostic.setqflist()<CR>')
-vim.cmd[[inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"]]
 vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
 -- <leader> is the '\' key
 vim.keymap.set('n', '<leader>ff', '<cmd>Files<CR>')
@@ -93,20 +85,8 @@ vim.diagnostic.config({
 	underline = false,
 })
 
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "rust", "javascript", "haskell", "cpp", "python", "graphql", "tsx" },
-  highlight = {
-    enable = true,
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-
 require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    flavour = "latte", -- latte, frappe, macchiato, mocha
     background = { -- :h background
         light = "latte",
         dark = "mocha",
@@ -187,10 +167,6 @@ require('telescope').setup{
 
 -- lspconfig is too slow with tsserver for now
 
-vim.lsp.config('denols', {
-	root_markers = {"deno.json", "deno.jsonc"},
-	single_file_support = false
-})
 vim.lsp.config('rust_analyzer', {
 	settings = {
 		['rust-analyzer'] = {
@@ -204,7 +180,8 @@ vim.lsp.config('tsserver', {
 })
 vim.lsp.config('ccls', {})
 vim.lsp.config('ocamllsp', {})
-vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.lsp.enable('ocamllsp')
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 vim.cmd [[autocmd BufEnter *.tsx set filetype=typescriptreact]]
 vim.cmd[[
 let g:matchparen_timeout = 2
