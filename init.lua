@@ -167,6 +167,7 @@ require('telescope').setup{
 
 -- lspconfig is too slow with tsserver for now
 
+vim.lsp.enable('rust_analzyer')
 vim.lsp.config('rust_analyzer', {
 	settings = {
 		['rust-analyzer'] = {
@@ -174,10 +175,12 @@ vim.lsp.config('rust_analyzer', {
 	},
 	root_markers = {"Cargo.toml", "rust-project.json"}
 })
+vim.lsp.enable('tsserver')
 vim.lsp.config('tsserver', {
 	root_markers = {"tsconfig.json", "package.json"},
 	single_file_support = false
 })
+vim.lsp.enable('ccls')
 vim.lsp.config('ccls', {})
 vim.lsp.config('ocamllsp', {})
 vim.lsp.enable('ocamllsp')
